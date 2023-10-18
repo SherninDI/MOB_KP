@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ButtonStyle" parent="">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/button_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/button_vertical_margin</item>
+        <item name="android:paddingRight">@dimen/button_horizontal_margin</item>
+        <item name="android:paddingBottom">@dimen/button_vertical_margin</item>
+    </style>
+</resources>
