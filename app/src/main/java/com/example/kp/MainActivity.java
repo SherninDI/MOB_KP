@@ -148,9 +148,9 @@ public class MainActivity extends AppCompatActivity implements DeviceListInterac
             if (device != null) {
                 String address = device.getAddress();
                 Log.e(TAG, address);
-//                Intent frag_to_act = new Intent(getActivity().getBaseContext(), MainActivity.class);
-//                frag_to_act.putExtra("device_address", address);
-//                getActivity().startActivity(frag_to_act);
+                Intent toData = new Intent(getBaseContext(), DataActivity.class);
+                toData.putExtra("device_address", address);
+                startActivity(toData);
 
 //                Intent intent = new Intent(getActivity().getBaseContext(), DataActivity.class);
 //                getActivity().startActivity(intent);
@@ -182,6 +182,28 @@ public class MainActivity extends AppCompatActivity implements DeviceListInterac
         } else {
             Log.e(TAG,"Succesfully paired with device " + deviceName + "!");
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (bluetoothPairingHandler.isDiscovering()) {
+            bluetoothPairingHandler.cancelDiscovery();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (this.bluetoothPairingHandler != null) {
+            this.bluetoothPairingHandler.cancelDiscovery();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        bluetoothPairingHandler.close();
+        super.onDestroy();
     }
 
 }
