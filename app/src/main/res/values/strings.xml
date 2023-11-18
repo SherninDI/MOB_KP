@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Курсовой проект</string>
-    <string name="bt_on">Включить Bluetooth</string>
-    <string name="bt_off">Выключить Bluetooth</string>
+    <string name="bt_on_off">Вкл/Выкл Bluetooth</string>
+    <string name="bt_connect">Подключение</string>
+    <string name="discover">Поиск устройств</string>
+    <string name="make_discoverable">Сделать доступным для поиска</string>
+    <string name="send">Отправить</string>
+    <string name="message_hint">Введите сообщение</string>
 
-    <string name="bt_turn_on">Bluetooth turned on</string>
+
+
+    <string name="bt_turn_on">Blu etooth turned on</string>
 
 
     <string name="BTconnFail">Connection Failed</string>
@@ -26,4 +32,17 @@
     <string name="DisStop">Discovery stopped</string>
     <string name="status">"Status: "</string>
     <string name="discover_new_devices">Discover new device</string>
+
+
+    <string name="connecting">Connecting</string>
+    <string name="listening">Listening</string>
+    <string name="connected">Connected</string>
+    <string name="failed">Connection Failed</string>
+    <string name="dinle">Dinle</string>
+    <string name="listele">Listele</string>
+    <string name="durum">Durum</string>
+    <string name="mesaj_alan">Mesaj Alanı</string>
+    <string name="yolla">Yolla</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,7 +1,13 @@
 package com.example.kp;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,12 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder> implements BluetoothDeviceDiscoveryListener {
     private static String TAG = "DeviceAdapter";
     private final List<BluetoothDevice> devices;
     private BluetoothPairingHandler bluetoothPairingHandler;
     DeviceListInteractionListener<BluetoothDevice> listener;
+    int selected_position = -1;
 
     DeviceAdapter(DeviceListInteractionListener<BluetoothDevice> listener) {
         this.devices = new ArrayList<>();
@@ -37,11 +43,15 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         holder.itemImage.setImageResource(getDeviceIcon(device));
         holder.itemName.setText(device.getName());
         holder.itemAddress.setText(device.getAddress());
-
+        holder.itemView.setBackgroundColor(selected_position == position ? Color.GREEN : Color.TRANSPARENT);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
+                    if (holder.getAdapterPosition() == RecyclerView.NO_POSITION) return;
+                    notifyItemChanged(selected_position);
+                    selected_position = holder.getAdapterPosition();
+                    notifyItemChanged(selected_position);
                     listener.onItemClick(device);
                 }
             }
@@ -81,18 +91,26 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
 
     public void cleanView() {
         devices.clear();
-        Log.e(TAG,"disc start");
         notifyDataSetChanged();
     }
 
     @Override
     public void onDeviceDiscoveryEnd() {
-        Log.e(TAG,"disc stop");
         listener.endLoading(false);
     }
     @Override
     public void setBluetoothPairingHandler(BluetoothPairingHandler bluetoothPairingHandler) {
         this.bluetoothPairingHandler = bluetoothPairingHandler;
+    }
+
+    @Override
+    public void onBluetoothStatusChanged() {
+        bluetoothPairingHandler.onBluetoothStatusChanged();
+    }
+
+    @Override
+    public void onBluetoothTurningOn() {
+        listener.startLoading();
     }
 
     private int getDeviceIcon(BluetoothDevice device) {
@@ -126,3 +144,4 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         }
     }
 }
+

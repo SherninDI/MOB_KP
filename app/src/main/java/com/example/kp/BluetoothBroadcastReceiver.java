@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 public class BluetoothBroadcastReceiver extends BroadcastReceiver {
+
+    private final String TAG = BluetoothBroadcastReceiver.class.getSimpleName();
     private final BluetoothDeviceDiscoveryListener listener;
     private final Context context;
 
@@ -45,7 +47,7 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
                 break;
 
             case BluetoothAdapter.ACTION_STATE_CHANGED:
-//                listener.onBluetoothStatusChanged();
+                listener.onBluetoothStatusChanged();
                 break;
 
             case BluetoothDevice.ACTION_BOND_STATE_CHANGED:
@@ -62,6 +64,10 @@ public class BluetoothBroadcastReceiver extends BroadcastReceiver {
 
     public void onDeviceDiscoveryEnd() {
         listener.onDeviceDiscoveryEnd();
+    }
+
+    public void onBluetoothTurningOn() {
+        listener.onBluetoothTurningOn();
     }
 
     public void close() {
