@@ -21,7 +21,6 @@ import java.util.List;
 
 
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder> implements BluetoothDeviceDiscoveryListener {
-    private static String TAG = "DeviceAdapter";
     private final List<BluetoothDevice> devices;
     private BluetoothPairingHandler bluetoothPairingHandler;
     DeviceListInteractionListener<BluetoothDevice> listener;
@@ -61,6 +60,10 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return devices.size();
+    }
+
+    public void setUnselected() {
+        selected_position = -1;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

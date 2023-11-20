@@ -2,47 +2,21 @@
     <string name="app_name">Курсовой проект</string>
     <string name="bt_on_off">Вкл/Выкл Bluetooth</string>
     <string name="bt_connect">Подключение</string>
-    <string name="discover">Поиск устройств</string>
+    <string name="start_discover">Поиск устройств</string>
+    <string name="finish_discover">Остановить поиск</string>
     <string name="make_discoverable">Сделать доступным для поиска</string>
     <string name="send">Отправить</string>
     <string name="message_hint">Введите сообщение</string>
+    <string name="status">Статус:</string>
+    <string name="status_connect">Подключено к %1$s</string>
+    <string name="status_waiting_for_connect">Ожидание подключения от %1$s</string>
+    <string name="status_start_discovery">Поиск устройств</string>
+    <string name="status_finish_discovery">Поиск устройств окончен</string>
+    <string name="status_ready_for_connect">%1$s готово к подключению</string>
+    <string name="status_pairing">Соединение с %1$s</string>
+    <string name="status_pairing_done">Соединение с %1$s установлено</string>
+    <string name="status_pairing_not_done">Соединение с %1$s не установлено</string>
 
+    <string name="message">от %1$s:\n%2$s</string>
 
-
-    <string name="bt_turn_on">Blu etooth turned on</string>
-
-
-    <string name="BTconnFail">Connection Failed</string>
-    <string name="BTConnected">Connected to Device:</string>
-    <string name="sBTdevNF">"Bluetooth device not found!"</string>
-    <string name="sBTstaNF">Status: Bluetooth not found</string>
-    <string name="BTEnable">Bluetooth enabled</string>
-
-    <string name="BTisON">Bluetooth is already on</string>
-    <string name="sEnabled">Enabled</string>
-    <string name="sDisabled">Disabled</string>
-    <string name="sBTdisabl">Bluetooth disabled</string>
-    <string name="BTnotOn">Bluetooth not on</string>
-    <string name="lt_bluetooth_status">Bluetooth status</string>
-    <string name="BTturOff">Bluetooth turned off</string>
-    <string name="cConnet">Connecting…</string>
-    <string name="ErrSockCrea">Socket creation failed</string>
-    <string name="DisStart">Discovery started</string>
-    <string name="show_paired_devices">Show Paired Devices</string>
-    <string name="DisStop">Discovery stopped</string>
-    <string name="status">"Status: "</string>
-    <string name="discover_new_devices">Discover new device</string>
-
-
-    <string name="connecting">Connecting</string>
-    <string name="listening">Listening</string>
-    <string name="connected">Connected</string>
-    <string name="failed">Connection Failed</string>
-    <string name="dinle">Dinle</string>
-    <string name="listele">Listele</string>
-    <string name="durum">Durum</string>
-    <string name="mesaj_alan">Mesaj Alanı</string>
-    <string name="yolla">Yolla</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

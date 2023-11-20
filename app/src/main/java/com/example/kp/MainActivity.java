@@ -1,19 +1,14 @@
 package com.example.kp;
 
-import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.*;
-import android.nfc.Tag;
 import android.os.*;
 
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,21 +21,18 @@ import static android.app.PendingIntent.getActivity;
 
 public class MainActivity extends AppCompatActivity{
     private final String TAG = MainActivity.class.getSimpleName();
-
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
     BluetoothAdapter bluetoothAdapter;
 
-
     public ArrayList<BluetoothDevice> btDevices = new ArrayList<>();
 
-    private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             // When discovery finds a device
             if (action.equals(bluetoothAdapter.ACTION_STATE_CHANGED)) {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, bluetoothAdapter.ERROR);
-
                 switch(state){
                     case BluetoothAdapter.STATE_OFF:
                         Log.d(TAG, "onReceive: STATE OFF");
@@ -64,9 +56,8 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy: called.");
         super.onDestroy();
-        unregisterReceiver(mBroadcastReceiver1);
+        unregisterReceiver(broadcastReceiver);
     }
 
 
@@ -80,7 +71,6 @@ public class MainActivity extends AppCompatActivity{
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         btDevices = new ArrayList<>();
-
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 
@@ -105,10 +95,6 @@ public class MainActivity extends AppCompatActivity{
             case  R.id.action_on_off:
                 enableDisableBT();
                 return true;
-            case  R.id.action_connect:
-
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -128,14 +114,14 @@ public class MainActivity extends AppCompatActivity{
             startActivity(enableBTIntent);
 
             IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
-            registerReceiver(mBroadcastReceiver1, BTIntent);
+            registerReceiver(broadcastReceiver, BTIntent);
         }
         if(bluetoothAdapter.isEnabled()){
             Log.d(TAG, "enableDisableBT: disabling BT.");
             bluetoothAdapter.disable();
 
             IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
-            registerReceiver(mBroadcastReceiver1, BTIntent);
+            registerReceiver(broadcastReceiver, BTIntent);
         }
 
     }

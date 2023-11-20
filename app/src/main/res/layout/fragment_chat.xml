@@ -10,29 +10,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <ScrollView
+        <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:id="@+id/chat_scroll"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/message_list"
+                android:background="@drawable/rv_border"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                app:reverseLayout="true"
+                app:stackFromEnd="false"
                 android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/message">
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView"/>
-        </ScrollView>
+                app:layout_constraintBottom_toTopOf="@id/message"
+        />
+
 
         <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="8dp"
                 android:inputType="text"
-                android:ems="10"
                 android:id="@+id/message"
                 android:hint="@string/message_hint"
-                app:layout_constraintTop_toBottomOf="@id/chat_scroll"
+                app:layout_constraintTop_toBottomOf="@id/message_list"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/send"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -43,7 +47,12 @@
             android:id="@+id/send"
             android:text="@string/send"
             android:layout_gravity="bottom"
-            app:layout_constraintTop_toBottomOf="@id/chat_scroll"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"
+            app:layout_constraintTop_toBottomOf="@id/message_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
